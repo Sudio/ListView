@@ -14,7 +14,7 @@ public class MyTouchListener implements View.OnTouchListener {
     float mFirstY = 0;
     float mCurrentY = 0;
     int direction = 0;
-    final int mTouchSlop= ViewConfiguration.get(MyApplication.getmContext()).getScaledTouchSlop();
+    final int mTouchSlop= ViewConfiguration.get(MyApplication.getContext()).getScaledTouchSlop();
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
