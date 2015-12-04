@@ -3,7 +3,9 @@ package com.xueyu.listviewholder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -16,12 +18,13 @@ public class MainActivity extends AppCompatActivity {
     private List<String> mDatas;
     private ViewHolderAdapter listAdapter;
 
-    @Override
+    final int mTouchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mDatas = new ArrayList<String>();
+        mDatas = new ArrayList<>();
         listView = (ListView) findViewById(R.id.listview);
+//        initHeaderView();
         listAdapter = new ViewHolderAdapter(mDatas, this);
         for (int i = 0; i < 20; i++) {
             String data = "listview" + i;
@@ -54,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void initHeaderView(){
+        View header = new View(this);
+        header.setLayoutParams(new AbsListView.LayoutParams(
+                AbsListView.LayoutParams.MATCH_PARENT,200
+        ));
+        listView.addHeaderView(header);
     }
 
     public void btnAdd(View view) {
